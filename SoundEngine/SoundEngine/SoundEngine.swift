@@ -292,8 +292,7 @@ public class SoundEngine {
             if let path = Bundle.main.path(forResource: soundFile, ofType: nil) {
                 let fileURL = NSURL.fileURL(withPath: path)
                 
-                if let file = try? AVAudioFile(forReading: fileURL) {
-                    let buffer = AVAudioPCMBuffer(pcmFormat: file.processingFormat, frameCapacity: AVAudioFrameCount(file.length))
+                if let file = try? AVAudioFile(forReading: fileURL), let buffer = AVAudioPCMBuffer(pcmFormat: file.processingFormat, frameCapacity: AVAudioFrameCount(file.length)) {
                     do {
                         try file.read(into: buffer)
                     } catch _ {
